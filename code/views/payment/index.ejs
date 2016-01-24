@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <meta charset="utf-8"/>
+    </head>
+    <body id="bodyservice">
+        <div class="container">
+           <div class="row main">
+               <div class="navbar-menu">
+                   <div class="row col-xs-12 col-md-8 col-lg-8">
+                       <div class="logo">
+                           <a href="#">
+                              tungnd
+                           </a>
+                       </div>
+                   </div>
+                   <div class="col-xs-6 col-md-4 col-lg-4 text-right">
+                   </div>
+               </div>
+               <div class="bg-main">
+                   <div class="col-xs-12 col-md-12">
+                       <h1 class="title">Đăng ký dịch vụ</h1>
+                   </div>
+                   <div class="col-xs-12 col-md-12" style="display:block;">
+                       <div class="row">
+                           <div class="col-xs-12 col-md-6">
+                               <div class="form-registerservice">
+                                   <div class="row login">
+                                       <form name="register-cash" id="frm-register" action="payment" method="post" role="form" class="col-xs-12">
+                                           <div class="row">
+                                               <div class="col-xs-12">
+                                                   <span id="title-login">Chọn gói cước</span>
+                                                   <span id="title-login">Chọn thêm gói cước</span>
+                                               </div>
+                                           </div>
+                                           <div class="row col-md-10">
+                                               <div  class="form-group">
+                                                   <select id="packagelist" name="package"  class="form-control">
+                                                       <option value="0">Chọn gói cơ bản</option>
+                                                       <%if(Packageday_base_info){%>
+                                                           <% Packageday_base_info.forEach(function(packagedaybase){ %>
+                                                                  <option value="<%=packagedaybase._id%>"> <%=packagedaybase.name%></option>
+                                                           <% }); %>
+                                                       <% } %>
+                                                   </select>
+                                               </div>
+                                           </div>
+                                           <div class="row">
+                                               <div class="col-xs-12">
+                                                   <span id="title-login">Chọn thêm gói cước</span>
+                                               </div>
+                                           </div>
+                                           <div class="row col-md-10">
+                                               <div  class="form-group">
+                                                   <select id="packagelist_add" name="package_add"  class="form-control">
+                                                       <option value="0">Chọn gói thể thao</option>
+                                                       <%if(Packageday_sport_info){%>
+                                                       <% Packageday_sport_info.forEach(function(packagedaysprot){ %>
+                                                       <option value="<%=packagedaysprot._id%>"> <%=packagedaysprot.name%></option>
+                                                       <% }); %>
+                                                       <% } %>
+
+                                                   </select>
+                                               </div>
+                                           </div>
+                                           <div class="row col-md-10">
+                                               <button type="button" class="btn btn-success form-control" id="pay">Thanh toán dịch vụ</button></br>
+                                               <div  class="form-group"><label id="message_lb"></label></div>
+                                           </div>
+
+                                       </form>
+                                   </div>
+                               </div><!--registerservice-->
+                           </div><!--row1-->
+                           <div class="col-xs-12 col-md-6">
+                               <div class="info_register">
+                                   <table class="table">
+                                       <thead>
+                                           <tr>
+                                               <th>Gói cước đăng ký</th>
+                                               <th>Số ngày</th>
+                                               <th>Số tiền</th>
+                                           </tr>
+                                       </thead>
+                                       <tbody id="tbody">
+
+                                       </tbody>
+                                   </table><!--Table-->
+                               </div>
+                           </div><!--row2-->
+                       </div>
+
+                   </div>
+               </div>
+           </div>
+
+        </div>
+    </body>
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            $('#frm-register').submit('beforeSubmit', function(event, jqXHR, settings) {
+                var form = $(this);
+                if(form.find('.has-error').length) {
+                    return false;
+                }
+                $.ajax({
+                    url: 'payment',
+                    type: 'post',
+                    data: form.serialize(),
+                    dataType:"json",
+                    beforeSend: function( xhr ) {
+                        $('#message_lb').show().text('Đang tải dữ liệu');
+                    },
+                    success: function(data) {
+                        var html='';
+                        var sum =0;
+                        if(data.error=='0'){
+                            $.each(data.data, function(key, value) {
+                                html += "<tr>";
+                                html += "<td>" + value.name + "</td>";
+                                html += "<td>" + value.month + " ngày</td>";
+                                html += "<th>$" + value.price + "</th>";
+                                html += "</tr>";
+
+                                sum += parseFloat(value.price)||0;
+                            });
+                            html += "<tr>";
+                            html += "<td></td>";
+                            html += "<td>Tổng tiền:</td>";
+                            html += "<th>$" + sum + "</th>";
+                            html += "</tr>";
+                            $('#tbody').html(html);
+                            $('#message_lb').show().text('Tải dữ liệu thành công');
+                        }
+                        else{
+                            $('#message_lb').show().text(data.data);
+                        }
+
+                    }
+                });
+                return false;
+            });
+            $("#frm-register").on("change", "select", function(){
+                $("#frm-register").submit();
+            });
+            $('#pay').click('beforeSubmit', function(event, jqXHR, settings) {
+                var form = $(this);
+                if(form.find('.has-error').length) {
+                    return false;
+                }
+                $.ajax({
+                    url: 'payment/pay',
+                    type: 'post',
+                    data: form.serialize(),
+                    dataType:"json",
+                    beforeSend: function( xhr ) {
+                        $('#message_lb').show().text('Đang thực hiện thanh toán và tạo thẻ');
+                    },
+                    success: function(data) {
+                        var html='';
+                        var sum =0;
+                        if(data.error=='0'){
+
+                            $('#message_lb').show().text('Thanh toán dịch vụ thành công'+data.data);
+                        }
+                        else{
+                            $('#message_lb').show().text(data.data);
+                        }
+
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</html>

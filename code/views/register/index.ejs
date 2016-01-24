@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    </head>
+    <body id = "bodyregister">
+         <div class="container" id = "panelregister" >
+             <div class="panel panel-primary" >
+                 <div class="panel-heading">ĐĂNG KÝ THÔNG TIN</div>
+                 <div class="panel-body">
+                     <form role="form" id="form-register" role="dialog" action="register" method="post">
+                         <div class="form-group">
+                             <label for="email">Email:</label>
+                             <input type="email" class="form-control" name="email" placeholder="Nhập email">
+                         </div>
+                         <div class="form-group">
+                             <label for="pwd">Mật khẩu:</label>
+                             <input type="password" class="form-control"  name="password" placeholder="Nhập mật khẩu">
+                         </div>
+                         <div class="form-group">
+                             <label for="pwd">Nhập lại mật khẩu:</label>
+                             <input type="password" class="form-control" name="repassword" placeholder="Nhập lại mật khẩu">
+                           </div>
+                         <div class="form-group">
+                           <label> <%= message %></label>
+                         </div>
+                         <button type="submit" class="btn btn-success">Đăng ký tài khoản</button>
+                         <a href="/">Trở lại</a>
+                     </form>
+                 </div>
+             </div>
+
+        </div>
+    </body>
+</html>

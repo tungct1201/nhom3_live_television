@@ -1,0 +1,146 @@
+body {
+  padding-top: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00B7FF;
+}
+#header{
+  top:0
+  height: 70px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10000;
+  display: block;
+  box-shadow: 0 0 #000;
+}
+#myModal{
+  padding-top: 80px;
+}
+#panelregister{
+  padding-top: 80px;
+  padding-left: 350px;
+  padding-right: 350px;
+ }
+#bodyregister{
+  font-family: 'Open Sans', sans-serif;
+  background-image: url("../images/bg.jpg");
+  background-repeat: repeat-x;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+}
+#form-login input{
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  font-family: 'Open Sans', sans-serif;
+  height: 40px;
+  margin-bottom: 20px;
+}
+#form-login a{
+  padding-left: 20px;
+}
+
+#bodyservice{
+  font-family: 'Open Sans', sans-serif;
+  background: #f9f9f9 url(../images/bg.jpg) center center fixed;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  color: #fff;
+
+}
+.bg-main {
+  width: 100%;
+  position: relative;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 30px;
+  color: #fff;
+  float: left;
+
+}
+.main {
+  padding: 20px 30px 20px 30px;
+  width: 100%;
+  margin: 0 auto;
+}
+.navbar-menu {
+  display: inline-block;
+  width: 100%;
+  margin: 10px 0 10px 0;
+}
+.navbar-menu .text-right {
+  text-align: right;
+  padding: 5px;
+}
+.navbar-menu a:hover{
+  color:#bbb;
+  text-decoration:none;
+}
+.container {
+  position: relative;
+  width: 1170px;
+}
+.form-registerservice select, .form-registerservice input[type=text] {
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  font-family: 'Open Sans', sans-serif;
+  height: 40px;
+  margin-bottom: 20px;
+  background-color: #727373;
+  color: #fff;
+}
+.form-registerservice  button, .form-registerservice button[type=button]:hover {
+  background-color: #ddb944;
+  border: 1px solid #ddb944;
+}
+.form-registerservice button, .form-registerservice button[type=button] {
+  background-color: #f6ce4c;
+  border: 1px solid #f6ce4c;
+  padding: 5px 15px;
+  border-radius: 2px;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #000;
+  height: 40px;
+  line-height: 18px;
+  font-weight: 700;
+  display: block;
+}
+.form-registerservice {
+  width: 100%;
+  float: left;
+  padding: 20px 0 0 0;
+  display: block;
+  border-right: 1px solid #737373;
+}
+.table > tbody > tr > .emptyrow {
+  border-top: none;
+}
+.table > thead > tr > .emptyrow {
+  border-bottom: none;
+}
+.table > tbody > tr > .highrow {
+  border-top: 3px solid;
+}
+table.table-striped th {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  text-align: center ;
+  color: #008340;
+  font-size: 15px;
+}
+
+table.table-striped td {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+table.table-hover td {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
